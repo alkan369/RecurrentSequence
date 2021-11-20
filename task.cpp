@@ -1,11 +1,11 @@
 #include <iostream>
 #include <cmath>
 
-double recurrentSequence(double lambda){
+inline double recurrentSequence(double lambda){
     return (3*(pow(lambda,2)) + lambda + 2) / (lambda + 5);
 }
 
-double findIndex(size_t index, double lambda){
+double findIndex(int index, double lambda){
     for(int i = 0; i < index; ++i){
         lambda = recurrentSequence(lambda);
     }
@@ -41,8 +41,12 @@ void sequenceFunc(){
     size_t cnt = 0;
     while(cnt != 5){
        std::cout << "Enter index : ";
-       size_t index;
+       int index;
        std::cin >> index;
+       if(index < 0){
+           std::cout << "Please enter positive index" << std::endl;
+           continue;
+       }
        std::cout << "a" << index  << " = " <<  findIndex(index, lambda) << std::endl; 
         ++cnt;
     }
